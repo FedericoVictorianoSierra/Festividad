@@ -87,10 +87,6 @@ if (isset($_POST['agregar_carrito'])) {
                     <div class='section-title'>
                         <h4 class='text-primary text-uppercase' style='letter-spacing: 5px;'>Artículos principales</h4>
                         <h1 class='display-4'><?php echo $fila_categorias['nombre']; ?></h1>
-                        <?php
-                        // Mandar el ID de la categoría a imprimir para mostrar el catálogo
-                        echo "<a class='btn btn-info' href='imprimirCatalogo.php?id={$fila_categorias['idcategoria']}'><i class='fa fa-print'></i> Imprimir Catálogo</a>";
-                        ?>
 
                     </div>
                     <?php
