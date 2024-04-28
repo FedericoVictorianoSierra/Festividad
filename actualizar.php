@@ -36,7 +36,6 @@ if (isset($_POST['actualizar'])) {
     $precio_venta = $_POST['precio_venta'];
     $existencia = $_POST['existencia'];
     $descripcion = $_POST['descripcion'];
-    $talla = $_POST['talla'];
     $imagen = $_POST['foto_'];
 
     $nombreimg = "imagen"; // Se obtiene el nombre de la imagen
@@ -54,7 +53,7 @@ if (isset($_POST['actualizar'])) {
     $idimagen = mysqli_insert_id($conexion);
 
     // Actualizar los datos en la tabla articulo sin actualizar la imagen
-    $sql = "UPDATE articulo SET idcategoria='$idcategoria', codigo='$codigo', nombre='$nombre', precio_venta='$precio_venta', existencia='$existencia', descripcion='$descripcion', talla='$talla' WHERE idarticulo='$idarticulo'";
+    $sql = "UPDATE articulo SET idcategoria='$idcategoria', codigo='$codigo', nombre='$nombre', precio_venta='$precio_venta', existencia='$existencia', descripcion='$descripcion' WHERE idarticulo='$idarticulo'";
 
     if (mysqli_query($conexion, $sql)) {
         $textoModal = "Los datos se han actualizado correctamente.";
@@ -139,8 +138,6 @@ if (!$resultado_categorias) {
             <label for="descripcion">Descripción:</label>
             <textarea name="descripcion" id="descripcion" required="required"><?php echo $articulo['descripcion']; ?></textarea>
             <br>
-            <label for="talla">Talla:</label>
-            <input class="px-4 me-sm-3" type="text" name="talla" id="talla" value="<?php echo $articulo['talla']; ?>" required="required">
 
             <label for="foto_">URL Foto:</label>
             <!--<input class="px-4 me-sm-3" type="file" name="foto_" id="foto_">-->

@@ -52,7 +52,7 @@ $idrol = $fila_usuario['idrol'];
 
             <?php
             // Realizamos la consulta para obtener las categorías
-            $query = "SELECT idcategoria, nombre, descripcion, id_imagen, idmaterial FROM categoria";
+            $query = "SELECT idcategoria, nombre, descripcion, id_imagen FROM categoria";
             $result = mysqli_query($conexion, $query);
 
             // Recorremos los resultados y mostramos la información de cada categoría
