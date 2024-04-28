@@ -13,24 +13,11 @@ $idusuario = $_SESSION['idusuario'];
 require("php_con/db.php"); // Incluir el archivo que contiene la función de conexión 
 $conexion = conexion(); // Crear la conexión a la base de datos
 
-// Consulta SQL para recuperar los materiales
-$material_query = "SELECT idmaterial, nombre FROM material";
-
-// Ejecutar la consulta
-$resultado_materiales = mysqli_query($conexion, $material_query);
-
-// Verificar si se materiales
-if (!$resultado_materiales) {
-    echo "Error al recuperar materiales: " . mysqli_error($conexion);
-    exit();
-}
-
 // Verificar si se ha enviado el formulario
 if (isset($_POST['actualizar'])) {
 
     // Obtener los valores del formulario
     $idcategoria = $_POST['idcategoria'];
-    $idmaterial = $_POST['idmaterial'];
     $nombre = $_POST['nombre'];
     $descripcion = $_POST['descripcion'];
 
@@ -54,10 +41,10 @@ if (isset($_POST['actualizar'])) {
         $idimagen = mysqli_insert_id($conexion);
 
         // Actualizar los datos en la tabla categoria, incluyendo el nuevo id_imagen
-        $sql = "UPDATE categoria SET idmaterial='$idmaterial', nombre='$nombre', descripcion='$descripcion' WHERE idcategoria='$idcategoria'";
+        $sql = "UPDATE categoria SET nombre='$nombre', descripcion='$descripcion' WHERE idcategoria='$idcategoria'";
     } else {
         // Actualizar los datos en la tabla categoria sin actualizar la imagen
-        $sql = "UPDATE categoria SET idmaterial='$idmaterial', nombre='$nombre', descripcion='$descripcion' WHERE idcategoria='$idcategoria'";
+        $sql = "UPDATE categoria SET nombre='$nombre', descripcion='$descripcion' WHERE idcategoria='$idcategoria'";
     }
 
     if (mysqli_query($conexion, $sql)) {
@@ -105,28 +92,12 @@ if (!$resultado_categoria) {
 // Obtener los datos de la categoria
 $categoria = mysqli_fetch_assoc($resultado_categoria);
 
-// Consulta SQL para recuperar las categorías
-$materiales_query = "SELECT idmaterial, nombre FROM material";
 
-// Ejecutar la consulta
-$resultado_material = mysqli_query($conexion, $materiales_query);
-
-// Verificar si se encontraron categorías
-if (!$resultado_material) {
-    echo "Error al recuperar las categorías: " . mysqli_error($conexion);
-    exit();
-}
 ?>
 <div class="container-fluid py-5">
     <div class="container">
         <form action="" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="idcategoria" value="<?php echo $categoria['idcategoria']; ?>">
-            <label for="idmaterial">Material:</label>
-            <select class="btn-primary btn-lg px-4 me-sm-3" name="idmaterial" id="idmaterial">
-                <?php while ($material = mysqli_fetch_assoc($resultado_materiales)) : ?>
-                    <option value="<?php echo $material['idmaterial']; ?>" <?php if ($material['idmaterial'] == $categoria['idmaterial']) echo "selected"; ?>><?php echo $material['nombre']; ?></option>
-                <?php endwhile; ?>
-            </select>
             <br>
             <label for="nombre">Nombre:</label>
             <input class="px-4 me-sm-3" type="text" name="nombre" id="nombre" value="<?php echo $categoria['nombre']; ?>" required="required">

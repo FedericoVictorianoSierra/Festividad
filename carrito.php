@@ -70,13 +70,7 @@ while ($resultado = mysqli_fetch_array($registros)) {
                     $total = 0; // Inicializar la variable total en cero
                     $subtotal = 0; // Inicializar la variable subtotal en cero
                     foreach ($datos as $datos1) {
-
-
-
-
                         $sql = "SELECT * FROM articulo WHERE idarticulo = " . $datos1['idarticulo'];
-
-
                         $resultado = mysqli_query($conexion, $sql);
                         $articulo = mysqli_fetch_assoc($resultado);
 
@@ -97,49 +91,9 @@ while ($resultado = mysqli_fetch_array($registros)) {
                             <!-- Mostrar la imagen del artículo -->
                             <td><img src='<?php echo $row_imagen['nuevaImagen']; ?>' alt='imagen' width='100'></td>
                             <td><?php echo $articulo['nombre']; ?></td>
-
-
-                            <td>
-                                <?php
-                                // Consulta SQL para obtener la existencia del artículo con la talla correspondiente
-                                $query_existencia = "SELECT e.existencia
-                         FROM existencia e
-                         WHERE e.id_articulo = " . $articulo['idarticulo'] . " AND e.id_talla = " . $datos1['idtalla'];
-
-                                $resultado_existencia = mysqli_query($conexion, $query_existencia);
-
-                                if ($resultado_existencia) {
-                                    $fila_existencia = mysqli_fetch_assoc($resultado_existencia);
-                                    echo $fila_existencia['existencia'];
-                                } else {
-                                    echo "No disponible";
-                                }
-
-
-                                // Verificar si la cantidad excede la existencia disponible
-                                if ($datos1['cantidad'] > $fila_existencia['existencia']) {
-                                    // Si la cantidad excede la existencia, actualizar la cantidad en el carrito
-                                    $nueva_cantidad = $fila_existencia['existencia'];
-                                    $id_carrito = $datos1['idcarrito'];
-                                    $query_actualizar_cantidad = "UPDATE carrito SET cantidad = $nueva_cantidad WHERE idcarrito = $id_carrito";
-                                    if (mysqli_query($conexion, $query_actualizar_cantidad)) {
-                                        // Actualizar la cantidad en la variable local $datos1
-                                        $datos1['cantidad'] = $nueva_cantidad;
-                                    } else {
-                                        // Manejar el error si la actualización falla
-                                        echo "Error al actualizar la cantidad en el carrito: " . mysqli_error($conexion);
-                                    }
-                                }
-
-                                ?>
-                            </td>
-
-
+                            <td><?php echo $articulo['existencia']; ?></td>
                             <td><?php echo "$" . $articulo['precio_venta']; ?></td>
-
                             <td><?php echo $datos1['cantidad']; ?></td>
-
-
                             <td><?php echo "$" . $precio_total; ?></td>
                             <td>
                                 <!-- Botón para eliminar el artículo del carrito -->

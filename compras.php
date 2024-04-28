@@ -34,7 +34,6 @@ $result = mysqli_query($conexion, $sql); // Ejecuta la consulta y guarda el resu
                         <th>Imagen</th>
                         <th>Código</th>
                         <th>Artículos</th>
-                        <th>Talla</th>
                         <th>Descripción</th>
                         <th>Cantidad</th>
                         <th>Subtotal</th>
@@ -62,11 +61,7 @@ $result = mysqli_query($conexion, $sql); // Ejecuta la consulta y guarda el resu
                         }
                         $subtotal_fecha += $row['total']; // Suma el total de la compra al subtotal de la fecha
 
-                       
-                            //mostrar la talla en $row3['nombre']
-                            $query3 = "SELECT * FROM talla WHERE idtalla = '{$row['idtalla']}'";
-                            $resultado3 = mysqli_query($conexion, $query3);
-                            $row3 = mysqli_fetch_assoc($resultado3);
+                
                         
                         echo "<tr>";
                             // Verifica si la fecha actual es diferente de la anterior
@@ -81,8 +76,6 @@ $result = mysqli_query($conexion, $sql); // Ejecuta la consulta y guarda el resu
                             <td><img src='" . $row['nuevaImagen'] . "' alt='nuevaImagen' width='100'></td>
                             <td>{$row['codigo']}</td>
                             <td>{$row['nombre']}</td>
-                            
-                            <td>{$row3['nombre']}</td>
 
                             <td>{$row['descripcion']}</td>
                             <td>{$row['cantidad']}</td>

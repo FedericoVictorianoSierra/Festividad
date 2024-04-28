@@ -77,7 +77,6 @@ $result = mysqli_query($conexion, $sql);
                                         <th>Imagen</th>
                                         <th>Código</th>
                                         <th>Artículos</th>
-                                        <th>Talla</th>
                                         <th>Descripción</th>
                                         <th>Cantidad</th>
                                         <th>Total</th>
@@ -147,14 +146,6 @@ $result = mysqli_query($conexion, $sql);
                                             <td><?php echo $rowarticulo['codigo']; ?></td>
                                             <td><?php echo $rowarticulo['nombre']; ?></td>
 
-                                            <?php
-
-                                            //mostrar la talla en $row3['nombre']
-                                            $query3 = "SELECT * FROM talla WHERE idtalla = '{$rowcarrito['idtalla']}'";
-                                            $resultado3 = mysqli_query($conexion, $query3);
-                                            $row3 = mysqli_fetch_assoc($resultado3); ?>
-
-                                            <td><?php echo $row3['nombre']; ?></td>
 
                                             <td><?php echo $rowarticulo['descripcion']; ?></td>
                                             <td><?php echo $rowcarrito['cantidad']; ?></td>

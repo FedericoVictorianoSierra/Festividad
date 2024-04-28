@@ -22,7 +22,7 @@ if ($id_articulo === null || !is_numeric($id_articulo)) {
 }
 
 // Consulta SQL para obtener la información del artículo
-$sql = "SELECT a.nombre, a.descripcion, a.modelo, a.precio_venta, e.existencia, u.nombre AS nombre_vendedor, img.nuevaImagen AS imagen
+$sql = "SELECT a.nombre, a.descripcion, a.precio_venta, e.existencia, u.nombre AS nombre_vendedor, img.nuevaImagen AS imagen
         FROM articulo AS a
         INNER JOIN usuario AS u ON a.idprovedor = u.idusuario
         LEFT JOIN existencia AS e ON a.idarticulo = e.id_articulo
@@ -54,7 +54,6 @@ $sql = "SELECT a.nombre, a.descripcion, a.modelo, a.precio_venta, e.existencia, 
 <div class="container-fluid pt-5">
     <div class="container">
         <p><?php echo $datos_articulo['descripcion']; ?></p>
-        <p>Modelo: <?php echo $datos_articulo['modelo']; ?></p>
         <p>Precio: $<?php echo number_format($datos_articulo['precio_venta'], 2); ?></p>
         <p>Existencias: <?php echo $datos_articulo['existencia']; ?></p>
         <p>Vendedor: <?php echo $datos_articulo['nombre_vendedor']; ?></p>
