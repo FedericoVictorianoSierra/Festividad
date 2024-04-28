@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400");
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  box-sizing: inherit;
+}
+
+body {
+  background: #3398DA;
+  font-family: "Lato";
+  font-weight: 300;
+  font-size: 1em;
+  color: #737373;
+  padding: 5em 0 0 0;
+}
+
+.grid {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  height: 100px;
+  margin: 0 auto;
+  max-width: 300px;
+  min-width: 300px;
+}
+
+#tab1:checked ~  .tab-content > form {
+  height: 250px;
+  width: 300px;
+  background-color: #EEEEEE;
+  border-radius: 5px;
+  padding: 18px;
+}
+/*Diseño altura del registro*/
+#tab2:checked ~  .tab-content > form {
+  height: 800px;
+  width: 300px;
+  background-color: #EEEEEE;
+  border-radius: 5px;
+  padding: 18px;
+}
+
+.grid .cube .tabs li {
+  width: 50%;
+  float: left;
+  display: block;
+}
+
+.grid .cube .tabs li:first-child label.nav {
+  border-radius: 5px 0 0 0;
+  border-right: 1px solid #bfbfbf;
+}
+
+
+.grid .cube .tabs input[type=radio] {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.grid .cube .tabs .nav {
+  display: block;
+  padding: 14px;
+  background: #ACE2E1;
+  cursor: pointer;
+  position: relative;
+  top: 0;
+  border-bottom: 1px solid #bfbfbf;
+  text-align: center;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+.grid .cube .tabs .tab-content {
+  margin-top: 45px;
+  display: none;
+  overflow: hidden;
+  width: 200%;
+  line-height: 25px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+/*inputs*/
+.grid .cube .tabs .tab-content input[type=text],
+.grid .cube .tabs .tab-content input[type=password],
+.grid .cube .tabs .tab-content input[type=number],
+.grid .cube .tabs .tab-content input[type=email] {
+  display: block;
+  line-height: 25px;
+  width: 90%;
+  padding: 3px 10px 3px 10px;
+  font-weight: 300;
+  font-size: 0.8em;
+  outline: none;
+  box-sizing: content-box;
+  border: 1px solid #3398DA;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.grid .cube .tabs .tab-content #loginBtn {/*Boton*/
+  width: 100%;
+  background-color: #3398DA;
+  padding: 12px;
+  margin: 10px 0 10px 0;
+  border: 1px solid #3398DA;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  outline: none;
+  font-size: 1em;
+  font-weight: light;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+
+input[type="file"] {
+  width: 100%;
+  background-color: #41C9E2;
+  margin: 10px 0 10px 0;
+  border: 1px solid #41C9E2;
+  border-radius: 5px;
+  
+}
+
+
+.grid .cube .tabs [id^=tab]:checked+label:before {
+  bottom: -11px;
+  border-top-color: #bfbfbf;
+  z-index: 60;
+}
+
+.grid .cube .tabs [id^=tab]:checked+label:after {
+  bottom: -9.5px;
+  z-index: 65;
+  border-top-color: #EEEEEE;
+}
+
+.grid .cube .tabs [id^=tab]:checked~[class^=tab-content] {
+  display: block;
+}
+
+

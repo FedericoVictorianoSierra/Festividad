@@ -1,0 +1,119 @@
+.cuerpo{
+    background-color: #EEEEEE;
+}
+
+.tabla1{
+    background-color:#3398DA;
+    border-radius: 30px;
+    /*border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;*/
+    color: aliceblue;
+    border-top-color: transparent;
+}
+
+
+.datostabla{
+   display:flex;
+    border-bottom: 3px solid;
+    border-top: 3px solid;
+    color: aliceblue;
+}
+
+.cuerpotabla{
+   background-color:#EEEEEE;
+    color: black;   
+}
+
+.rows{
+    display:flex;
+    flex-wrap:wrap;
+    margin-right:-15px;
+    margin-left:-15px;
+}
+
+#Total{
+    position: absolute;
+    color: aliceblue;
+
+    
+}
+
+.cantidad-contenedor {
+    position: relative;
+    justify-content: space-between;
+  }
+  
+  .cantidad {
+    padding-left: 10px;
+    margin-left: 60px;
+    box-sizing: border-box;
+    max-width: 70px;
+  }
+  
+  .alineacion2 {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+  
+  .botones, .botones2 {
+    display: inline-block;
+    margin: 0;
+    padding: 5px 10px;
+    border: none;
+    background-color: #ccc;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  #boton1 {
+    float: left;
+    left: -20px;
+  }
+  
+  #boton2 {
+    margin-right: 5px;
+  }
+  
+  
+  
+ 
+
+.botonstyle{
+
+    background-color: #3398DA;
+    color:black;
+    border-radius: 5px;
+}
+
+.contenedortabla{
+    display: grid;
+    place-content: center;
+    
+    flex-wrap: wrap;
+    width: 1536px;
+    height: 745px;
+
+}
+
+#compra{
+    border-radius: 5px;
+    width: 80px;
+
+    
+}
+
+.alineacion{
+    display: flex;
+    place-content: center;
+    flex-wrap: wrap;
+}
+
+
+
+.encabezado{
+    border-top: 0px;
+    border-top-color: transparent;
+}
