@@ -57,7 +57,7 @@ if (isset($_POST['agregar_carrito'])) {
     <div class="container">
         <div class="row">
 
-        <?php
+            <?php
             // Mostrar el botón "Nuevo" solo si el valor de idrol es igual a 2
             if ($idrol == 2) {
                 echo '<a class="btn btn-success" href="./insertar.php">Nuevo <i class="fa fa-plus"></i></a>';
@@ -84,11 +84,16 @@ if (isset($_POST['agregar_carrito'])) {
                 // Mostrar título de la categoría con su respectivo identificador para el scroll
             ?>
                 <div class='container' id='categoria-<?php echo $fila_categorias['idcategoria']; ?>'>
-                    <div class='section-title'>
-                        <h4 class='text-primary text-uppercase' style='letter-spacing: 5px;'>Artículos principales</h4>
-                        <h1 class='display-4'><?php echo $fila_categorias['nombre']; ?></h1>
 
-                    </div>
+                <?php if (empty($_GET['q'])) { //si se ha realizado una busqueda no mostrar imprimirCatalogo y categoria
+                    ?>
+                        <div class='section-title'>
+                            <h4 class='text-primary text-uppercase' style='letter-spacing: 5px;'>Artículos principales</h4>
+                            <h1 class='display-4'><?php echo $fila_categorias['nombre']; ?></h1>
+                        </div>
+                    <?php }
+                    ?>
+
                     <?php
                     // si es el provedor solo mostrarle sus articulos
                     if ($idrol == 2) {
@@ -144,6 +149,17 @@ if (isset($_POST['agregar_carrito'])) {
 
 
                                         <?php
+
+                                        $query = "SELECT * FROM usuario WHERE idusuario = {$fila_articulos['idprovedor']}";
+                                        $resultado_usuario = mysqli_query($conexion, $query);
+                                        $fila_usuario = mysqli_fetch_assoc($resultado_usuario);
+
+                                        ?>
+
+                                        <p>Vendedor: <?php echo $fila_usuario['nombre']; ?></p>
+
+
+                                        <?php
                                         if ($idrol == 1) { ?>
                                             <!-- Formulario para agregar el artículo al carrito -->
                                             <form method='post'>
@@ -152,6 +168,7 @@ if (isset($_POST['agregar_carrito'])) {
                                                 <button class='btn btn-primary btn-lg px-4 me-sm-3' type='submit' name='agregar_carrito'>Agregar al carrito</button>
                                             </form>
                                         <?php } ?>
+
 
                                         <?php
                                         // Mostrar el botón solo si el valor de idrol es igual a 2

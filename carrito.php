@@ -74,6 +74,18 @@ while ($resultado = mysqli_fetch_array($registros)) {
                         $resultado = mysqli_query($conexion, $sql);
                         $articulo = mysqli_fetch_assoc($resultado);
 
+                        // Ajustar la cantidad si excede la existencia disponible
+                        if ($datos1['cantidad'] > $articulo['existencia']) {
+                            $cantidad_actualizada = $articulo['existencia'];
+
+                            // Actualizar la cantidad en la base de datos
+                            $sql_actualizar_cantidad = "UPDATE carrito SET cantidad = $cantidad_actualizada WHERE idcarrito = " . $datos1['idcarrito'];
+                            mysqli_query($conexion, $sql_actualizar_cantidad);
+
+                            // Actualizar la cantidad en los datos locales
+                            $datos1['cantidad'] = $cantidad_actualizada;
+                        }
+
                         // Obtener imagen de la base de datos
                         $query_imagen = "SELECT nuevaImagen FROM img WHERE id_imagen = " . $articulo['id_imagen'];
                         $result_imagen = mysqli_query($conexion, $query_imagen);
