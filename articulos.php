@@ -164,8 +164,7 @@ if (isset($_POST['agregar_carrito'])) {
                                             <!-- Formulario para agregar el artículo al carrito -->
                                             <form method='post'>
                                                 <input type='hidden' name='idarticulo' value='<?php echo $fila_articulos['idarticulo']; ?>'>
-                                                <input class='btn btn-primary btn-lg px-4 me-sm-3' type='number' name='cantidad' value='1' min='1' max='<?php echo $fila_articulos['existencia']; ?>'>
-                                                <button class='btn btn-primary btn-lg px-4 me-sm-3' type='submit' name='agregar_carrito'>Agregar al carrito</button>
+                                                <button class='btn btn-primary btn-lg px-4 me-sm-3' type='submit' name='agregar_carrito'><i class="fa fa-cart-plus"></i></button>
                                             </form>
                                         <?php } ?>
 
