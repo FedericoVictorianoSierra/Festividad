@@ -6,7 +6,7 @@ include 'conexion.php';
 // Comprobar si se ha enviado el formulario de agregar al carrito
 if (isset($_POST['agregar_carrito'])) {
     $idarticulo = $_POST['idarticulo']; // Obtener el ID del artículo a agregar
-    $cantidad = $_POST['cantidad']; // Obtener la cantidad del artículo a agregar
+    $cantidad = 1;
 
     // Consulta SQL para verificar si ya existe una fila en la tabla de carrito con la misma ID de artículo y carrito activo
     $sql_verificar = "SELECT * FROM carrito WHERE idarticulo = $idarticulo AND idusuario = $idusuario AND activo = 1";

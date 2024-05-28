@@ -14,20 +14,6 @@ $idusuario = $_SESSION['idusuario'];
 require("php_con/db.php"); // Incluir el archivo que contiene la función de conexión 
 $conexion = conexion(); // Crear la conexión a la base de datos
 
-// Consulta SQL para recuperar los materiales
-$material_query = "SELECT idmaterial, nombre FROM material";
-
-// Ejecutar la consulta
-$resultado_materiales = mysqli_query($conexion, $material_query);
-//obtener el idmaterial
-$row_materiales = mysqli_fetch_array($resultado_materiales);
-$idmaterial = $row_materiales['idmaterial'];
-
-// Verificar si se materiales
-if (!$resultado_materiales) {
-    echo "Error al recuperar materiales: " . mysqli_error($conexion);
-    exit();
-}
 
 // Verificar si se ha enviado el formulario
 if (isset($_POST['crear'])) {
@@ -50,7 +36,7 @@ if (isset($_POST['crear'])) {
     $idimagen = mysqli_insert_id($conexion);
 
     // Insertar los datos en la tabla categoria
-    $sql = "INSERT INTO categoria (nombre, descripcion, idmaterial, id_imagen) VALUES ('$nombre', '$descripcion', '$idmaterial', '$idimagen')";
+    $sql = "INSERT INTO categoria (nombre, descripcion, id_imagen) VALUES ('$nombre', '$descripcion', '$idimagen')";
     if (mysqli_query($conexion, $sql)) {
         $textoModal = "Los datos se han insertado correctamente.";
         $mostrarModal = true;
@@ -77,12 +63,6 @@ if (isset($_POST['crear'])) {
 <div class="container-fluid py-5">
     <div class="container">
         <form class="" action="" method="POST" enctype="multipart/form-data">
-            <label>Material:</label>
-            <select class="btn-primary btn-lg px-4 me-sm-3" name="idcategoria" id="idcategoria">
-                <?php while ($row = mysqli_fetch_array($resultado_materiales)) : ?>
-                    <option value="<?php echo $row['idmaterial']; ?>"><?php echo $row['nombre']; ?></option>
-                <?php endwhile; ?>
-            </select>
             <br>
             <label for="nombre">Nombre:</label>
             <input class="px-4 me-sm-3" type="text" name="nombre" id="nombre" required="required">

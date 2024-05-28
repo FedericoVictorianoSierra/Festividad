@@ -36,24 +36,20 @@ if (isset($_POST['crear'])) {
     $precio_venta = $_POST['precio_venta'];
     $existencia = $_POST['existencia'];
     $descripcion = $_POST['descripcion'];
-    $talla = $_POST['talla'];
-    $modelo = $_POST['modelo'];
+    $imagen = $_POST['foto_'];
 
-    if (isset($_FILES['foto_'])) { // Se comprueba que se haya subido una foto
-        $nombreimg = basename($_FILES['foto_']['name']); // Se obtiene el nombre de la imagen
-        $imagen = addslashes(file_get_contents($_FILES['foto_']['tmp_name'])); // Se obtiene el contenido binario de la imagen
-        $tip = exif_imagetype($_FILES['foto_']['tmp_name']); //Se obtiene el tipo de imagen
-        $extension = image_type_to_extension($tip); // Se obtiene la extensión de la imagen
-    }
+
+    /// Se actualiza la imagen del articulo en la tabla img
+    $query_imagen = "INSERT INTO img(nuevaImagen) VALUES ('$imagen')";
 
     // Se inserta la imagen del usuario en la tabla img
-    $query_imagen = "INSERT INTO img(nombre,imagen, Tipo) VALUES ('$nombreimg','$imagen','$extension')";
     mysqli_query($conexion, $query_imagen);
     $idimagen = mysqli_insert_id($conexion);
 
-    // Insertar los datos en la tabla articulo
-    $sql = "INSERT INTO articulo (idcategoria, codigo, nombre, precio_venta, existencia, descripcion, talla, modelo, id_imagen) VALUES ('$idcategoria', '$codigo', '$nombre', '$precio_venta', '$existencia', '$descripcion', '$talla', '$modelo', '$idimagen')";
-    if (mysqli_query($conexion, $sql)) {
+// Insertar los datos en la tabla articulos, incluyendo el idusuario
+$sql = "INSERT INTO articulo (idcategoria, codigo, nombre, precio_venta, existencia, descripcion, id_imagen, idprovedor) VALUES ('$idcategoria', '$codigo', '$nombre', '$precio_venta', '$existencia', '$descripcion', '$idimagen', '$idusuario')";
+
+if (mysqli_query($conexion, $sql)) {
         $textoModal = "Los datos se han insertado correctamente.";
         $mostrarModal = true;
         $nombreArchivo = "insertar.php";
@@ -103,15 +99,10 @@ if (isset($_POST['crear'])) {
             <label for="descripcion">Descripción:</label>
             <textarea class="px-4 me-sm-3" name="descripcion" id="descripcion" required="required"></textarea>
             <br>
-            <label for="talla">Talla:</label>
-            <input class="px-4 me-sm-3" type="text" name="talla" id="talla" required="required">
-            <br>
-            <label class="m" for="modelo">Modelo:</label>
-            <input class="px-4 me-sm-3" type="text" name="modelo" id="modelo" required="required">
-            <br>
-            <label for="foto_">Imagen:</label>
-            <input class="px-4 me-sm-3" type="file" name="foto_" id="foto_" required="required" accept="image/png, image/jpeg, image/jpg">
-            <br>
+            <label for="foto_">URL Foto:</label>
+            <!--<input class="px-4 me-sm-3" type="file" name="foto_" id="foto_">-->
+
+            <input class="px-4 me-sm-3" type="text" name="foto_" id="foto_" required="required">
             <input class="btn btn-secondary font-weight-bold py-2 px-4 mt-2" type="submit" name="crear" value="Crear artículo">
         </form>
     </div>
