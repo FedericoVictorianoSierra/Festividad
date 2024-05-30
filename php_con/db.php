@@ -1,6 +1,6 @@
 <?php
 
-
+/*
 global $enlace;
 function conexion(){
         $enlace = mysqli_connect('localhost', 'root', '','festividad');
@@ -12,15 +12,16 @@ function conexion(){
             exit;
         }
         return $enlace;
-}
-/*
+        
+}*/
+
 global $enlace;
 
 function conexion() {
-    $host = 'sql301.infinityfree.com';
-    $username = 'if0_36053438';
-    $password = '7K97X6c6yUMFw';
-    $database = 'if0_36053438_ropatipica';
+    $host = 'sql203.infinityfree.com';
+    $username = 'if0_36641767';
+    $password = 'r9WGs9UENU8';
+    $database = 'if0_36641767_festividad';
 
     $enlace = mysqli_connect($host, $username, $password, $database);
 
@@ -33,5 +34,5 @@ function conexion() {
 
     return $enlace;
 }
-*/
+
 ?>
